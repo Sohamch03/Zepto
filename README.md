@@ -21,7 +21,6 @@ The dataset was sourced from [Kaggle](https://www.kaggle.com/datasets/palvinder2
 Each row represents a unique SKU (Stock Keeping Unit) for a product. Duplicate product names exist because the same product may appear multiple times in different package sizes, weights, discounts, or categories to improve visibility – exactly how real catalog data looks.
 
 🧾 Columns:
-- **sku_id:** Unique identifier for each product entry (Synthetic Primary Key)
 
 - **name:** Product name as it appears on the app
 
@@ -50,7 +49,6 @@ We start by creating a SQL table with appropriate data types:
 
 ```sql
 CREATE TABLE zepto (
-  sku_id SERIAL PRIMARY KEY,
   category VARCHAR(120),
   name VARCHAR(150) NOT NULL,
   mrp NUMERIC(8,2),
@@ -64,15 +62,9 @@ CREATE TABLE zepto (
 ```
 
 ### 2. Data Import
-- Loaded CSV using pgAdmin's import feature.
+- Loaded CSV using MYSQL import feature.
 
- - If you're not able to use the import feature, write this code instead:
-```sql
-   \copy zepto(category,name,mrp,discountPercent,availableQuantity,
-            discountedSellingPrice,weightInGms,outOfStock,quantity)
-  FROM 'data/zepto_v2.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', QUOTE '"', ENCODING 'UTF8');
-```
-- Faced encoding issues (UTF-8 error), which were fixed by saving the CSV file using CSV UTF-8 format.
+
 
 ### 3. 🔍 Data Exploration
 - Counted the total number of records in the dataset
@@ -112,12 +104,8 @@ CREATE TABLE zepto (
 
 ## 🛠️ How to Use This Project
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/amlanmohanty/zepto-SQL-data-analysis-project.git
-   cd zepto-SQL-data-analysis-project
    ```
-2. **Open zepto_SQL_data_analysis.sql**
+1. **Open zepto_SQL_data_analysis.sql**
 
     This file contains:
 
@@ -129,15 +117,13 @@ CREATE TABLE zepto (
 
       - SQL Business analysis
   
-3. **Load the dataset into pgAdmin or any other PostgreSQL client**
+2. **Load the dataset into MYSQL client**
 
       - Create a database and run the SQL file
 
       - Import the dataset (convert to UTF-8 if necessary)
 
-4. **Follow along with the YouTube video for full walkthrough. 👨‍💼**
 
-## 📜 License
 
 MIT 
 
